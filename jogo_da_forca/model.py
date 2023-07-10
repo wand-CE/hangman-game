@@ -30,9 +30,19 @@ class Tela(Tk):
         self.lista_letras_na_tela = []
         self.alfabeto()
         self.palavra = self.escolhe_palavra()
-        self.label_dica = Label(self.principal, text=f'DICA: {self.palavra[0]}', font=('Arial', 25)).place(x=300,y=20, h=50, w=350)
+        self.label_dica = Label(self.principal,
+                                text=f'DICA: {self.palavra[0]}',
+                                font=('Arial', 25)).place(x=300,
+                                                          y=20,
+                                                          h=50,
+                                                          w=350)
         for i in range(len(self.palavra[1])):
-            self.linha = Label(self.principal, text='_', font=('Arial', 50)).place(x=(300+(i*60)),y=170, h=100, w=50)
+            self.linha = Label(self.principal,
+                               text='_',
+                               font=('Arial', 50)).place(x=(300+(i*60)),
+                                                         y=170,
+                                                         h=100,
+                                                         w=50)
 
 
     def escolhe_palavra(self):
@@ -49,7 +59,10 @@ class Tela(Tk):
         self.label_forca.place(x=20,y=20, h=460, w=260)
 
     def popula_palavra(self, letra, posicao):
-        """metodo que verifica se a letra apertada esta na palavra, e caso esteja coloca a mesma na tela"""
+        """
+        metodo que verifica se a letra apertada esta na palavra,
+        e caso esteja coloca a mesma na tela
+        """
         self.lista_botoes_alfabeto[posicao].config(state='disabled')
         pos_letras = [i for i,e in enumerate(self.palavra[1]) if e==letra]
         if len(pos_letras) == 0:
@@ -58,7 +71,8 @@ class Tela(Tk):
             self.label_forca['image']=self.img
             if self.contador_erro == 7:
                 jogar = askyesno(title='Jogar Novamente',
-                                         message=f'Você Perdeu!!!\nA palavra era: {self.palavra[1]}\nDeseja jogar novamente??')
+                                message=f'''Você Perdeu!!!\nA palavra era:
+                                {self.palavra[1]}\nDeseja jogar novamente??''')
                 self.destroy() if not jogar else self.reiniciar()
 
         else:
